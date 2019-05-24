@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "967667055375",
+    "firebase_url": "https://omgupsplaces.firebaseio.com",
+    "project_id": "omgupsplaces",
+    "storage_bucket": "omgupsplaces.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:967667055375:android:dc278aebcf9be5ee",
+        "android_client_info": {
+          "package_name": "com.alphan.mainactivity"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "967667055375-kao94uj3b7d1k0o15glh66hkn4h7lddh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.alphan.mainactivity",
+            "certificate_hash": "10933f4781efe945a3f44f18cac3a18bfae5ad15"
+          }
+        },
+        {
+          "client_id": "967667055375-0o0uinsgn6hq3j5ok2bgo07irg563jff.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBnkZZc1ceufBEkfBQTLj1Pqe9myB-YIyU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "967667055375-0o0uinsgn6hq3j5ok2bgo07irg563jff.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
