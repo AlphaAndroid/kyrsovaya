@@ -1,3 +1,11 @@
 <resources>
-    <string name="app_name">MainActivity</string>
+    <string name="app_name">Kyrsach</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">
+        AIzaSyDCFKv2ubhy6kttlzVPVaANGGU2CuY_HuA
+    </string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="drawer_open">Nav drawer open</string>
+    <string name="drawer_close">Nav drawer close</string>
+    <string name="string_desc_nav_drawer">Navigation drawer</string>
+    <string name="string_search">Поиск</string>
 </resources>

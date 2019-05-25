@@ -10,6 +10,5 @@ annotation class AppScope {
     @AppScope
     @Component(modules = [MainModule::class])
     interface AppComponent {
-        //fun inject(fragment: MainMapFragment)
     }
 }
