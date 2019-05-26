@@ -7,6 +7,7 @@
     android:layout_height="match_parent">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/searchBar"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginStart="8dp"
@@ -28,7 +29,9 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="16dp"
                 android:background="?selectableItemBackgroundBorderless"
+                android:clickable="true"
                 android:contentDescription="@string/string_desc_nav_drawer"
+                android:focusable="true"
                 app:srcCompat="@drawable/ic_nav" />
 
             <TextView

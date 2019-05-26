@@ -3,8 +3,9 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:title="Import" />
+            android:id="@+id/navSettings"
+            android:icon="@drawable/ic_settings"
+            android:title="@string/string_settings" />
         <item
             android:id="@+id/nav_gallery"
             android:title="Gallery" />
@@ -16,15 +17,17 @@
             android:title="Tools" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="@string/string_geolocation">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:title="Share" />
+                android:id="@+id/navGeoStatus"
+                android:title="@string/string_access_to_geolocation" />
             <item
-                android:id="@+id/nav_send"
-                android:title="Send" />
+                android:id="@+id/navRadiusStatus"
+                android:title="@string/string_show_radius" />
+            <item
+                android:id="@+id/navFindMe"
+                android:title="@string/string_find_me" />
         </menu>
     </item>
-
 </menu>

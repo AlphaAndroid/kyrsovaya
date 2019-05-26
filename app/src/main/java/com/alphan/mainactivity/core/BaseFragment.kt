@@ -3,6 +3,7 @@ package com.alphan.mainactivity.core
 import androidx.fragment.app.Fragment
 import com.arellomobile.mvp.MvpAppCompatFragment
 
+
 open class BaseFragment : MvpAppCompatFragment(), BaseView {
 
     /**
@@ -16,15 +17,15 @@ open class BaseFragment : MvpAppCompatFragment(), BaseView {
         val fragmentName = fragment.javaClass.name
         if (addToBackStack)
             activity?.supportFragmentManager
-                ?.beginTransaction()
-                ?.replace(container, fragment)
-                ?.addToBackStack(fragmentName)
-                ?.commit()
+                    ?.beginTransaction()
+                    ?.replace(container, fragment)
+                    ?.addToBackStack(fragmentName)
+                    ?.commit()
         else
             activity?.supportFragmentManager
-                ?.beginTransaction()
-                ?.replace(container, fragment)
-                ?.commit()
+                    ?.beginTransaction()
+                    ?.replace(container, fragment)
+                    ?.commit()
     }
 
     /**
@@ -41,8 +42,8 @@ open class BaseFragment : MvpAppCompatFragment(), BaseView {
      */
     fun goToBackStackFragment(name: String) {
         activity?.supportFragmentManager?.popBackStack(
-            name,
-            androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE
+                name,
+                androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE
         )
     }
 }

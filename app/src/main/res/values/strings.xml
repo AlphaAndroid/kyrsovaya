@@ -8,4 +8,11 @@
     <string name="drawer_close">Nav drawer close</string>
     <string name="string_desc_nav_drawer">Navigation drawer</string>
     <string name="string_search">Поиск</string>
+    <string name="string_geolocation">Геолокация</string>
+    <string name="string_access_to_geolocation">Доступ к местоположению</string>
+    <string name="string_show_radius">Показывать радиус</string>
+    <string name="string_find_me">Найти меня</string>
+    <string name="string_desc_geo_status">Geo status</string>
+    <string name="string_desc_nav_logo">Nav Logo</string>
+    <string name="string_settings">Настройки</string>
 </resources>
