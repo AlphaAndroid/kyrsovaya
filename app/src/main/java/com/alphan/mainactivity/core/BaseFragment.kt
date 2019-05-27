@@ -1,6 +1,8 @@
 package com.alphan.mainactivity.core
 
 import androidx.fragment.app.Fragment
+import com.alphan.mainactivity.utils.Alert
+import com.alphan.mainactivity.utils.Constants
 import com.arellomobile.mvp.MvpAppCompatFragment
 
 
@@ -45,5 +47,12 @@ open class BaseFragment : MvpAppCompatFragment(), BaseView {
                 name,
                 androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE
         )
+    }
+
+    fun showAlert(message: String) {
+        Alert.makeBuilder(context, message)
+                .enableFirstBtn(Constants.OK)
+                .setCancelable(true)
+                .show()
     }
 }

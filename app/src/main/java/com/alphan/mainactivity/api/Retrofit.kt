@@ -1,9 +1,14 @@
 package com.alphan.mainactivity.api
 
+import com.alphan.mainactivity.utils.Constants.BASE_URL
+import io.reactivex.Single
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.GET
+import retrofit2.http.Headers
+import retrofit2.http.Query
 import java.util.concurrent.TimeUnit
 
 fun getRetrofitInstance(): API {
@@ -21,7 +26,7 @@ fun getRetrofitInstance(): API {
 
     val retrofit = retrofit2.Retrofit.Builder()
         .client(client)
-        .baseUrl("BASE URL")
+        .baseUrl(BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .build()
@@ -30,4 +35,14 @@ fun getRetrofitInstance(): API {
 }
 
 interface API {
+
+    @Headers("Content-Type: application/json")
+    @GET("json")
+    fun getNearbyPlaces(
+        @Query("language") language: String,
+        @Query("location") location: String,
+        @Query("radius") radius: String,
+        @Query("type") type: String,
+        @Query("key") key: String
+    ): Single<NearbyPlacesResponse>
 }

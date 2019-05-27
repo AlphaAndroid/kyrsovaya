@@ -1,0 +1,10 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:bottom="12dp"
+        android:drawable="@drawable/ic_airport_white"
+        android:gravity="center"
+        android:left="12dp"
+        android:right="11dp"
+        android:top="12dp" />
+
+</layer-list>

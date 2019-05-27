@@ -4,15 +4,28 @@ import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
-import com.alphan.mainactivity.utils.Constants.RADIUS
+import com.alphan.mainactivity.utils.Constants.*
 
 class UserPreferences {
 
     var shouldShowRadius: Boolean
-        get() = sp?.getBoolean(RADIUS, false) ?: false
+        get() = sp?.getBoolean(RADIUS_STATUS, false) ?: false
         set(value) {
-            editor?.putBoolean(RADIUS, value)?.commit()
+            editor?.putBoolean(RADIUS_STATUS, value)?.commit()
         }
+
+    var searchRadius: Int
+        get() = sp?.getInt(RADIUS, 1000) ?: 1000
+        set(value) {
+            editor?.putInt(RADIUS, value)?.commit()
+        }
+
+    var selectedPlaceType: String?
+        get() = sp?.getString(SELECTED_PLACE_TYPE, null)
+        set(value) {
+            editor?.putString(SELECTED_PLACE_TYPE, value)?.commit()
+        }
+
 
     /*var isDownloadScheduleTeacherImmediatly: Boolean
         get() = sp!!.getBoolean(DOWNLOAD_SCHEDULE_TEACHER_IMMEDIATLY, false)

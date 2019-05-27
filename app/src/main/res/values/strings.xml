@@ -15,4 +15,6 @@
     <string name="string_desc_geo_status">Geo status</string>
     <string name="string_desc_nav_logo">Nav Logo</string>
     <string name="string_settings">Настройки</string>
+    <string name="string_search_radius">Радиус поиска:</string>
+    <string name="string_choose_category">Выберите категорию</string>
 </resources>
