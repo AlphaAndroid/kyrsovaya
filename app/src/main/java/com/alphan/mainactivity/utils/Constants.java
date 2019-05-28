@@ -57,6 +57,8 @@ public class Constants {
     //network
     public static final String BASE_URL = "https://maps.googleapis.com/maps/api/place/nearbysearch/";
     public static final String API_KEY = "AIzaSyDCFKv2ubhy6kttlzVPVaANGGU2CuY_HuA";
+    public static final String RU = "ru";
+    public static final String DEFAULT_PLACE_TYPE = "airport";
 
     //view const
     public static final String GRANT_PERMISSIONS = "Предоставьте необходимые разрешения для использования всех возможностей приложения";

@@ -20,8 +20,8 @@ class UserPreferences {
             editor?.putInt(RADIUS, value)?.commit()
         }
 
-    var selectedPlaceType: String?
-        get() = sp?.getString(SELECTED_PLACE_TYPE, null)
+    var selectedPlaceType: String
+        get() = sp?.getString(SELECTED_PLACE_TYPE, DEFAULT_PLACE_TYPE) ?: DEFAULT_PLACE_TYPE
         set(value) {
             editor?.putString(SELECTED_PLACE_TYPE, value)?.commit()
         }

@@ -8,11 +8,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.alphan.mainactivity.R
 import com.alphan.mainactivity.core.BaseApplication
 import com.alphan.mainactivity.models.CircleCheckBoxModel
+import com.alphan.mainactivity.utils.Constants.DEFAULT_PLACE_TYPE
 import com.alphan.mainactivity.utils.UserPreferences
 import kotlinx.android.synthetic.main.item_place_type.view.*
 import javax.inject.Inject
 
-class PlacesTypeAdapter constructor(types: List<CircleCheckBoxModel>, listener: OnPlaceTypeItemClickListener) : RecyclerView.Adapter<PlacesTypeAdapter.PlacesViewHolder>() {
+class PlacesTypeAdapter constructor(types: List<CircleCheckBoxModel>, listener: OnPlaceTypeItemClickListener) :
+        RecyclerView.Adapter<PlacesTypeAdapter.PlacesViewHolder>() {
 
     @Inject
     lateinit var userPreferences: UserPreferences
@@ -39,14 +41,8 @@ class PlacesTypeAdapter constructor(types: List<CircleCheckBoxModel>, listener: 
         holder.itemView.setOnClickListener {
             item.isChecked = !item.isChecked
             if (item.isChecked) userPreferences.selectedPlaceType = item.requestWord
-            else userPreferences.selectedPlaceType = null
+            else userPreferences.selectedPlaceType = DEFAULT_PLACE_TYPE
             holder.setStatus(item.isChecked)
-                    /*mTypes.forEachIndexed { index, _ ->
-                run {
-                    if (index != holder.adapterPosition)
-                        mTypes[index].isChecked = false
-                }
-            }*/
             mTypes.forEach { it.isChecked = false }
             notifyDataSetChanged()
         }
@@ -59,8 +55,13 @@ class PlacesTypeAdapter constructor(types: List<CircleCheckBoxModel>, listener: 
     inner class PlacesViewHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun setStatus(isChecked: Boolean) {
-            if (isChecked) itemView.circleImageView.borderWidth = 20
-            else itemView.circleImageView.borderWidth = 0
+            if (isChecked) {
+                itemView.whiteStrokeView.visibility = View.VISIBLE
+                itemView.circleImageView.borderWidth = 20
+            } else {
+                itemView.whiteStrokeView.visibility = View.GONE
+                itemView.circleImageView.borderWidth = 0
+            }
             itemView.circleImageView.borderColor = ContextCompat.getColor(itemView.context, R.color.colorPrimary)
         }
 
@@ -68,7 +69,7 @@ class PlacesTypeAdapter constructor(types: List<CircleCheckBoxModel>, listener: 
             itemView.titleTv.text = item.title
             itemView.circleImageView.setImageDrawable(ContextCompat.getDrawable(itemView.context, item.image))
             itemView.circleImageView.setCircleBackgroundColorResource(item.background)
-            userPreferences.selectedPlaceType?.run { setStatus(this == item.requestWord) }
+            userPreferences.selectedPlaceType.run { setStatus(this == item.requestWord) }
         }
     }
 }
