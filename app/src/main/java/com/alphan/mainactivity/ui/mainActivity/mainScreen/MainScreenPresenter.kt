@@ -3,7 +3,7 @@ package com.alphan.mainactivity.ui.mainActivity.mainScreen
 import android.annotation.SuppressLint
 import android.util.Log
 import com.alphan.mainactivity.api.NearbyPlacesResponse
-import com.alphan.mainactivity.api.getRetrofitInstance
+import com.alphan.mainactivity.api.getRetrofitInstancePlaces
 import com.alphan.mainactivity.core.BaseApplication
 import com.alphan.mainactivity.core.BasePresenter
 import com.alphan.mainactivity.utils.Constants.*
@@ -21,6 +21,7 @@ class MainScreenPresenter : BasePresenter<MainScreenView>() {
 
     @Inject
     lateinit var userPreferences: UserPreferences
+
     private var mPlaces = ArrayList<NearbyPlacesResponse.Place>()
 
     init {
@@ -29,7 +30,9 @@ class MainScreenPresenter : BasePresenter<MainScreenView>() {
 
     @SuppressLint("CheckResult")
     fun findLocations(locationResult: LocationResult) {
-        getRetrofitInstance().getNearbyPlaces(
+        userPreferences.lastUserLat = locationResult.lastLocation.latitude.toFloat()
+        userPreferences.lastUserLng = locationResult.lastLocation.longitude.toFloat()
+        getRetrofitInstancePlaces().getNearbyPlaces(
                 RU,
                 "${locationResult.lastLocation.latitude}, ${locationResult.lastLocation.longitude}",
                 userPreferences.searchRadius.toString(),
@@ -60,11 +63,12 @@ class MainScreenPresenter : BasePresenter<MainScreenView>() {
     fun onMarkerClicked(marker: Marker) {
         val index = Integer.valueOf(marker.tag.toString())
         val place = mPlaces[index]
-        viewState.showBottomSheet(place.name, place.address, place.rating, place.openingStatus?.isOpened)
+        viewState.showBottomSheet(place.name, place.address, place.rating, place.openingStatus?.isOpened, place.photos?.get(0)?.photoRefrence)
     }
 
     private fun onNearbyPlacesReceived(response: NearbyPlacesResponse) {
         val placesLatLng = ArrayList<LatLng>()
+        mPlaces.clear()
         mPlaces.addAll(response.results)
         response.results.forEach {
             placesLatLng.add(

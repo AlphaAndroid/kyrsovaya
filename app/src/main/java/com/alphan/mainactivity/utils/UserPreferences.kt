@@ -25,19 +25,17 @@ class UserPreferences {
         set(value) {
             editor?.putString(SELECTED_PLACE_TYPE, value)?.commit()
         }
-
-
-    /*var isDownloadScheduleTeacherImmediatly: Boolean
-        get() = sp!!.getBoolean(DOWNLOAD_SCHEDULE_TEACHER_IMMEDIATLY, false)
-        set(isImmediatly) {
-            editor!!.putBoolean(DOWNLOAD_SCHEDULE_TEACHER_IMMEDIATLY, isImmediatly).commit()
+    var lastUserLat: Float
+        get() = sp?.getFloat(LAT, 0.0f) ?: 0.0f
+        set(value) {
+            editor?.putFloat(LAT, value)?.commit()
         }
 
-    var isInvalidateCache: Boolean
-        get() = sp!!.getBoolean(INVALIDATE_CACHE, false)
-        set(status) {
-            editor!!.putBoolean(INVALIDATE_CACHE, status).commit()
-        }*/
+    var lastUserLng: Float
+        get() = sp?.getFloat(LNG, 0.0f) ?: 0.0f
+        set(value) {
+            editor?.putFloat(LNG, value)?.commit()
+        }
 
     companion object {
 

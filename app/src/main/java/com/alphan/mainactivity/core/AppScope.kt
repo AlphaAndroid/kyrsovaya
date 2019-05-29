@@ -1,6 +1,8 @@
 package com.alphan.mainactivity.core
 
 import com.alphan.mainactivity.modules.MainModule
+import com.alphan.mainactivity.ui.activitySearch.SearchActivity
+import com.alphan.mainactivity.ui.activitySearch.SearchActivityPresenter
 import com.alphan.mainactivity.ui.adapters.PlacesTypeAdapter
 import com.alphan.mainactivity.ui.mainActivity.MainActivity
 import com.alphan.mainactivity.ui.mainActivity.MainActivityPresenter
@@ -26,5 +28,8 @@ annotation class AppScope {
         fun inject(basePresenter: MainScreenPresenter)
 
         fun inject(fragment: SettingsFragment)
+
+        fun inject(activity: SearchActivity)
+        fun inject(presenter: SearchActivityPresenter)
     }
 }

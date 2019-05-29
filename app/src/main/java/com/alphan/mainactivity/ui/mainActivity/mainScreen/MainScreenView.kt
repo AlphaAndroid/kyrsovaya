@@ -15,5 +15,5 @@ interface MainScreenView : BaseView {
 
     fun setMarkers(places: ArrayList<LatLng>)
 
-    fun showBottomSheet(title: String, location: String, rating: Double, isOpened: Boolean?)
+    fun showBottomSheet(title: String, location: String, rating: Double, isOpened: Boolean?, photo: String?)
 }

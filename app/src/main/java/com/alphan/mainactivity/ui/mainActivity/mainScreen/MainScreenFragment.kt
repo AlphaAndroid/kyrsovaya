@@ -1,9 +1,12 @@
 package com.alphan.mainactivity.ui.mainActivity.mainScreen
 
 import android.annotation.SuppressLint
+import android.app.Activity.RESULT_OK
 import android.app.Application
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +14,9 @@ import androidx.core.content.ContextCompat
 import com.alphan.mainactivity.R
 import com.alphan.mainactivity.core.BaseApplication
 import com.alphan.mainactivity.core.BaseFragment
+import com.alphan.mainactivity.ui.activitySearch.SearchActivity
 import com.alphan.mainactivity.ui.mainActivity.MainActivity
+import com.alphan.mainactivity.utils.Constants.*
 import com.alphan.mainactivity.utils.GpsService
 import com.alphan.mainactivity.utils.UserPreferences
 import com.arellomobile.mvp.presenter.InjectPresenter
@@ -27,6 +32,7 @@ import com.google.android.gms.maps.model.CircleOptions
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_main_screen.*
 import kotlinx.android.synthetic.main.layout_bottom_sheet.view.*
 import javax.inject.Inject
@@ -48,6 +54,7 @@ class MainScreenFragment : BaseFragment(), MainScreenView, OnMapReadyCallback, G
     private val mGpsService = GpsService()
     private var mRadius = 1000
     private var mCircle: Circle? = null
+    private var mGlobalMarkerOptions: MarkerOptions? = null
     private lateinit var mLocationClient: FusedLocationProviderClient
     private lateinit var mBottomSheetDialog: BottomSheetDialog
 
@@ -95,7 +102,8 @@ class MainScreenFragment : BaseFragment(), MainScreenView, OnMapReadyCallback, G
         customizeMap()
         presenter.findMe()
         mGoogleMap?.setOnMarkerClickListener {
-            presenter.onMarkerClicked(it)
+            if (it.tag != null)
+                presenter.onMarkerClicked(it)
             return@setOnMarkerClickListener true
         }
     }
@@ -142,6 +150,7 @@ class MainScreenFragment : BaseFragment(), MainScreenView, OnMapReadyCallback, G
     override fun setMarkers(places: ArrayList<LatLng>) {
         mGoogleMap?.run {
             clear()
+            mGlobalMarkerOptions?.let { addMarker(it) }
             places.forEachIndexed { index, latLng ->
                 val marker = addMarker(MarkerOptions().position(latLng))
                 marker.tag = index
@@ -158,7 +167,7 @@ class MainScreenFragment : BaseFragment(), MainScreenView, OnMapReadyCallback, G
     /**
      * Инициализация ButtonSheet
      */
-    override fun showBottomSheet(title: String, location: String, rating: Double, isOpened: Boolean?) {
+    override fun showBottomSheet(title: String, location: String, rating: Double, isOpened: Boolean?, photo: String?) {
         val view = layoutInflater.inflate(R.layout.layout_bottom_sheet, parent, false)
         context?.let {
             mBottomSheetDialog = BottomSheetDialog(it)
@@ -167,16 +176,46 @@ class MainScreenFragment : BaseFragment(), MainScreenView, OnMapReadyCallback, G
             view.placeAddressTv.text = location
             view.ratingTv.text = rating.toString()
             view.ratingBar.rating = rating.toFloat()
+            photo?.run {
+                view.photoFrame.visibility = View.VISIBLE
+                Picasso.get().load("$BASE_URL_PHOTOS$this&key=$API_KEY").into(view.placeImg)
+            }
             isOpened?.run {
+                view.openStatusTv.visibility = View.VISIBLE
                 if (this) {
+                    view.openStatusTv.text = "Сейчас открыто"
                     view.openStatusTv.setTextColor(Color.GREEN)
-                    view.openStatusTv.text = "Открыто"
                 } else {
                     view.openStatusTv.setTextColor(Color.RED)
-                    view.openStatusTv.text = "Закрыто"
+                    view.openStatusTv.text = "Сейчас закрыто"
                 }
             }
             mBottomSheetDialog.show()
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when (requestCode) {
+            1448 -> {
+                when (resultCode) {
+                    RESULT_OK -> {
+                        data?.run {
+                            mGoogleMap?.run {
+                                val latLng = LatLng(
+                                        data.getDoubleExtra(LAT, 0.0),
+                                        data.getDoubleExtra(LNG, 0.0)
+                                )
+                                animateCamera(
+                                        CameraUpdateFactory.newLatLngZoom(latLng, 15.0f)
+                                )
+                                mGlobalMarkerOptions = MarkerOptions().position(latLng)
+                                addMarker(mGlobalMarkerOptions)
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -196,5 +235,6 @@ class MainScreenFragment : BaseFragment(), MainScreenView, OnMapReadyCallback, G
         mapFragment?.getMapAsync(this)
         mLocationClient = LocationServices.getFusedLocationProviderClient(appContext)
         navImg.setOnClickListener { (activity as MainActivity).openDrawer() }
+        searchTv.setOnClickListener { startActivityForResult(Intent(appContext, SearchActivity::class.java), 1448) }
     }
 }

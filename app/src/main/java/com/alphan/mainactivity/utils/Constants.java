@@ -51,11 +51,68 @@ public class Constants {
                     "supermarket",
                     R.color.colorFive
             ));
+
+            add(new CircleCheckBoxModel(
+                    false,
+                    R.drawable.ic_circle_bank,
+                    "Банки",
+                    "bank",
+                    R.color.colorSix
+            ));
+
+            add(new CircleCheckBoxModel(
+                    false,
+                    R.drawable.ic_circle_police,
+                    "Полиция",
+                    "police",
+                    R.color.colorSeven
+            ));
+
+            add(new CircleCheckBoxModel(
+                    false,
+                    R.drawable.ic_circle_gym,
+                    "Спорт залы",
+                    "gym",
+                    R.color.colorEight
+            ));
+
+            add(new CircleCheckBoxModel(
+                    false,
+                    R.drawable.ic_circle_library,
+                    "Библиотеки",
+                    "library",
+                    R.color.colorNine
+            ));
+
+            add(new CircleCheckBoxModel(
+                    false,
+                    R.drawable.ic_circle_beauty,
+                    "Салоны красоты",
+                    "beauty_salon",
+                    R.color.colorTen
+            ));
+
+            add(new CircleCheckBoxModel(
+                    false,
+                    R.drawable.ic_circle_restorant,
+                    "Рестораны",
+                    "restaurant",
+                    R.color.colorEleven
+            ));
+
+            add(new CircleCheckBoxModel(
+                    false,
+                    R.drawable.ic_circle_cafe,
+                    "Кафе",
+                    "cafe",
+                    R.color.colorTwelve
+            ));
         }
     };
 
     //network
-    public static final String BASE_URL = "https://maps.googleapis.com/maps/api/place/nearbysearch/";
+    public static final String BASE_URL_PLACES = "https://maps.googleapis.com/maps/api/place/nearbysearch/";
+    public static final String BASE_URL_PHOTOS = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=720&maxheight=1280&photoreference=";
     public static final String API_KEY = "AIzaSyDCFKv2ubhy6kttlzVPVaANGGU2CuY_HuA";
     public static final String RU = "ru";
     public static final String DEFAULT_PLACE_TYPE = "airport";
@@ -75,4 +132,6 @@ public class Constants {
     public static final String RADIUS_STATUS = "radiusStatus";
     public static final String RADIUS = "radius";
     public static final String SELECTED_PLACE_TYPE = "selectedPlaceType";
+    public static final String LAT = "lat";
+    public static final String LNG = "lng";
 }

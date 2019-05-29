@@ -17,4 +17,6 @@
     <string name="string_settings">Настройки</string>
     <string name="string_search_radius">Радиус поиска:</string>
     <string name="string_choose_category">Выберите категорию</string>
+    <string name="string_desc_place_image">Place Image</string>
+    <string name="string_desc_place_marker">Place marker</string>
 </resources>

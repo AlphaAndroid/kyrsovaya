@@ -11,7 +11,8 @@ data class NearbyPlacesResponse(
             @SerializedName("name") var name: String,
             @SerializedName("opening_hours") var openingStatus: OpeningStatus?,
             @SerializedName("rating") var rating: Double,
-            @SerializedName("vicinity") var address: String
+            @SerializedName("vicinity") var address: String,
+            @SerializedName("photos") var photos: List<Photos>?
     ) {
         inner class Geometry(
                 @SerializedName("location") var location: Location
@@ -22,6 +23,8 @@ data class NearbyPlacesResponse(
             )
         }
 
-        inner class OpeningStatus(@SerializedName("open_now") var isOpened: Boolean)
+        inner class OpeningStatus(@SerializedName("open_now") var isOpened: Boolean?)
+
+        inner class Photos(@SerializedName("photo_reference") var photoRefrence: String? = null)
     }
 }

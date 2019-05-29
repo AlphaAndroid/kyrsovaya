@@ -14,5 +14,12 @@
     <color name="colorThree">#27a327</color>
     <color name="colorFour">#cc0000</color>
     <color name="colorFive">#e0d100</color>
+    <color name="colorSix">#e28b00</color>
+    <color name="colorSeven">#c41e3a</color>
+    <color name="colorEight">#ab1352</color>
+    <color name="colorNine">#23451e</color>
+    <color name="colorTen">#1f5c3f</color>
+    <color name="colorEleven">#520e35</color>
+    <color name="colorTwelve">#4b0082</color>
 
 </resources>
